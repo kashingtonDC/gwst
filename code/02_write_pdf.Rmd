@@ -1,0 +1,38 @@
+---
+title: "Signatories of the Global Groundwater Sustainability Statement"
+date: "Last updated: `r Sys.time()`"
+output: pdf_document
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+d <- readr::read_csv("~/Github/gwst/data/contact02.csv")
+```
+
+```{r, include=FALSE}
+d <- dplyr::mutate(d, 
+                   md_string = 
+                     paste0(
+                       `First Name`, " ",
+                       `Las Name`, ", ",
+                       Position, " at ",
+                       Company, " (",
+                       Country, ")"
+                     )
+                   )
+# if a web address if provided
+d$md_string <- ifelse(is.na(d$`Web Address`),
+                      d$md_string,
+                      paste0("[", 
+                             d$md_string,
+                             "](",
+                             d$`Web Address`,
+                             ")")
+                      )
+
+```
+
+
+`r paste(d$md_string, collapse = " \n \n ")`
