@@ -35,4 +35,4 @@ d$md_string <- ifelse(is.na(d$`Web Address`),
 ```
 
 
-`r paste(d$md_string, collapse = " \n \n ")`
+`r paste(sort(d$md_string), collapse = " \n \n ")`
