@@ -8,8 +8,6 @@ df = pd.read_csv(sys.argv[1])
 
 df.columns = [x.replace(" ", "_") for x in df.columns]
 
-print(df.columns)
-
 n_signatories = len(df.Las_Name.unique())
 n_countries = len(df.Country.unique())
 n_institutions = len(df.Company.unique())
